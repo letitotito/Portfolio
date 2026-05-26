@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #7f8c8d;
+        }
+
+        /* --- Portfolio Grid --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #e74c3c;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            background-color: #95a5a6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .modal-body p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #e1e8ed;
+            color: #2c3e50;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Creative Portfolio</h1>
+        <p>Click on any project to view details</p>
+    </header>
+
+    <main class="portfolio-grid" id="portfolioGrid"></main>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-image" id="modalImage">Project Preview</div>
+            <div class="modal-body">
+                <h2 id="modalTitle">Project Title</h2>
+                <p id="modalDescription">Detailed project description goes here...</p>
+                <div class="tech-tags" id="modalTags"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Project Data (9 Projects)
+        const projects = [
+            { id: 1, title: "E-Commerce Platform", short: "A full-featured online shop.", details: "This project is a fully responsive e-commerce storefront featuring a dynamic shopping cart, user authentication, and Stripe payment integration.", tags: ["React", "Node.js", "MongoDB"], color: "#3498db" },
+            { id: 2, title: "Analytics Dashboard", short: "Real-time data visualization.", details: "A comprehensive dashboard that processes live API feeds to render interactive charts, user activity maps, and financial forecasting statistics.", tags: ["Vue.js", "D3.js", "Firebase"], color: "#2ecc71" },
+            { id: 3, title: "Task Manager App", short: "Kanban style productivity tool.", details: "A productivity application allowing teams to collaborate seamlessly with drag-and-drop task boards, deadline reminders, and productivity tracking metrics.", tags: ["Next.js", "Tailwind CSS", "Prisma"], color: "#9b59b6" },
+            { id: 4, title: "Social Media API", short: "Robust backend for social networking.", details: "A secure, scalable RESTful API supporting user profiles, followers, posts, likes, and nested comments with optimized database queries.", tags: ["Python", "Django", "PostgreSQL"], color: "#e67e22" },
+            { id: 5, title: "Weather Forecast PWA", short: "Hyper-local weather updates.", details: "A Progressive Web App utilizing geolocation data to fetch real-time weather metrics, 7-day outlooks, and severe weather warnings even offline.", tags: ["HTML5", "CSS3", "Vanilla JS"], color: "#f1c40f" },
+            { id: 6, title: "Fitness Tracker Mobile", short: "Cross-platform workout companion.", details: "A mobile app that tracks daily workouts, calorie expenditures, and sleep patterns, synced to a secure cloud backend.", tags: ["React Native", "Redux", "GraphQL"], color: "#e74c3c" },
+            { id: 7, title: "AI Image Generator", short: "Interface for neural network models.", details: "A user-friendly web interface that interfaces with generative AI models, allowing users to generate, variations, and upscale creative digital artwork.", tags: ["TypeScript", "Next.js", "OpenAI API"], color: "#1abc9c" },
+            { id: 8, title: "Cybersecurity Scanner", short: "Network vulnerability analyzer.", details: "A lightweight automated tool designed to scan specific network ports, identify weak configurations, and generate detailed compliance reports.", tags: ["Go", "Docker", "Linux Shell"], color: "#34495e" },
+            { id: 9, title: "Crypto Wallet Tracker", short: "Monitor blockchain assets easily.", details: "A clean dashboard that hooks into the Ethereum blockchain to monitor multiple wallet balances, transaction histories, and real-time gas fees.", tags: ["Svelte", "Web3.js", "Chart.js"], color: "#7f8c8d" }
+        ];
+
+        // 2. DOM Elements
+        const grid = document.getElementById('portfolioGrid');
+        const overlay = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('modalClose');
+        
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalImage = document.getElementById('modalImage');
+        const modalTags = document.getElementById('modalTags');
+
+        // 3. Render Portfolio Cards Dynamically
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.classList.add('project-card');
+            card.setAttribute('data-id', project.id);
+            
+            card.innerHTML = `
+                <div class="card-image" style="background-color: ${project.color}">
+                    ${project.title.split(' ')[0]} 
+                </div>
+                <div class="card-content">
+                    <h3>${project.title}</h3>
+                    <p>${project.short}</p>
+                </div>
+            `;
+            
+            // Add click listener to card to open modal
+            card.addEventListener('click', () => openModal(project));
+            grid.appendChild(card);
+        });
+
+        // 4. Modal Functions
+        function openModal(project) {
+            modalTitle.innerText = project.title;
+            modalDescription.innerText = project.details;
+            modalImage.innerText = project.title;
+            modalImage.style.backgroundColor = project.color;
+            
+            // Clear existing tags and add new ones
+            modalTags.innerHTML = '';
+            project.tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.classList.add('tag');
+                tagSpan.innerText = tag;
+                modalTags.appendChild(tagSpan);
+            });
+
+            overlay.classList.add('active');
+        }
+
+        function closeModal() {
+            overlay.classList.remove('active');
+        }
+
+        // 5. Event Listeners for Closing
+        closeBtn.addEventListener('click', closeModal);
+        
+        // Close if user clicks outside the modal content box
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
+        });
+
+        // Close on 'Escape' keypress
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
