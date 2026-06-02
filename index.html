@@ -25,7 +25,6 @@
             padding: 0;
         }
 
-        /* Bulletproof cross-browser alternative to background-attachment: fixed */
         body::before {
             content: "";
             position: fixed;
@@ -37,6 +36,10 @@
             background-color: #000;
             background: #000 url(assets/background.webp) top center no-repeat;
             background-size: cover;
+        }
+
+        h1,h2, h3, h4, p {
+            cursor: default;
         }
 
         header {
@@ -51,7 +54,6 @@
             background: url(assets/background.webp) top center no-repeat;
             background-size: cover;
             background-attachment: fixed;
-        
         }
 
         header h1 {
@@ -64,9 +66,13 @@
             color: #6c757d;
         }
 
+        p span {
+            display: inline-block;
+        }
+
         .hero {
             position: relative;
-            height: 100vh;  
+            height: 50vh;  
         }
 
         .hero p, .card-content p, .modal-header-info p {
@@ -141,11 +147,13 @@
         }
 
         .card-content h3 {
+            font-size: 1.25em;
             font-weight: 700;
         }
 
         .card-content p {
             color: #777;
+            font-size: .9em;
         }
 
         .card-image-container {
@@ -176,7 +184,7 @@
         .modal-container {
             width: 100%;
             overflow: auto;
-            -webkit-overflow-scrolling: touch; /* Momentum scrolling layout for mobile Safari */
+            -webkit-overflow-scrolling: touch; 
             padding: 6rem 2rem 4rem 2rem;
             position: relative;
         }
@@ -184,7 +192,7 @@
         #projectModalOverlay .modal-container {
             height: 100%;
             overflow: auto;
-            -webkit-overflow-scrolling: touch; /* Forces natural momentum scrolling inside project modal overlay */
+            -webkit-overflow-scrolling: touch; 
         }
 
         #projectModalOverlay .modal-container .content {
@@ -241,7 +249,7 @@
             background-color: #333;
         }
 
-        /* --- TYPE 1: Project Modal (Swipe Up Transition) --- */
+        /* --- TYPE 1: Project Modal --- */
         #projectModalOverlay {
             opacity: 0;
             transform: translateY(100%);
@@ -256,7 +264,7 @@
             pointer-events: auto;
         }
 
-        /* --- TYPE 2: Contact Modal (Classic Fade Transition) --- */
+        /* --- TYPE 2: Contact Modal --- */
         #contactModalOverlay {
             background: rgba(255, 255, 255, 0.95);
             opacity: 0;
@@ -270,14 +278,14 @@
 
         /* --- Shared Modal Content Styles --- */
         .modal-header-info {
-            margin-bottom: 2.5rem;
+            margin-bottom: 6em;
             text-align: left;
             color: #fff;
         }
 
         .modal-header-info h2 {
-            font-size: 1.75em;
-            margin-bottom: .5rem;
+            font-size: 2em;
+            margin-bottom: .75em;
         }
 
         .modal-header-info p {
@@ -286,13 +294,13 @@
 
         .modal-media-stack {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .modal-media-item {
-            width: 100%;
+            width: 100%; 
             border-radius: .5em;
             overflow: hidden;
         }
@@ -333,16 +341,36 @@
             text-decoration: underline;
         }
 
-        /*Responsive*/
-        @media (min-width: 768px) {
+        /* Responsive Layout Controls */
+        @media (min-width: 700px) {
             header {
                 position: fixed;
+            }
+
+            .hero {
+                height: 100vh;  
             }
 
             .hero p {
                 position: fixed;
                 bottom: 50%;
                 text-align: center;
+            }
+
+            .modal-media-stack {
+                gap: 2rem; 
+            }
+
+            .modal-media-item.w-50 {
+                width: calc(50% - 1rem);
+            }
+            
+            .modal-media-item.w-33 {
+                width: calc(33.333% - 1.334rem);
+            }
+
+            .modal-media-item.w-100 {
+                width: 100%;
             }
         }
     </style>
@@ -351,7 +379,6 @@
 
     <header>
         <h1>TITO / SOTO</h1>
-         
         <button class="btn-contact" id="contactOpenBtn">Contact</button>
     </header>
 
@@ -379,54 +406,105 @@
     <div class="modal-overlay" id="contactModalOverlay">
         <button class="modal-close" id="contactModalClose">X</button>
         <div class="modal-container">
-            <ul class="contact-list">
+            <div class="contact-list">
                 <li><span>Email:</span> <a href="mailto:hello@titosoto.com">hello@titosoto.com</a></li>
                 <li><span>Phone:</span> <a href="tel:+12106025935">210.602.5935</a></li>
                 <li><span>LinkedIn:</span> <a href="https://www.linkedin.com/in/thetitosoto/" target="_blank" rel="noopener">in / TheTitoSoto</a></li>
-            </ul>
+            </div>
         </div>
     </div>
 
     <script>
-        // 1. Explicit Array of 9 Projects
         const projects = [
             {
                 id: 1,
-                title: "E-Commerce Platform",
-                short: "A complete online shopping ecosystem.",
-                details: "An in-depth look at our frontend components, user flows, and inventory modules.",
+                title: "Redfin",
+                short: "Scalable marketing toolkits, cross-brand <span>product UX</span>, & integrated marketing campaigns.", 
+                details: "During my half-decade tenure at Redfin, I had the privilege of shaping a massive volume of work across nearly every consumer touchpoint. My role dynamically shifted across multiple cross-functional initiatives; for several projects, I embedded directly with product teams to develop scalable UX solutions with hands-on designs, while for others, I acted as the art director guiding high-profile creative strategy.<br><br>While this collection focuses on final execution across core categories like brand systems, digital experiences, DTC marketing toolkits, and integrated OOH campaigns, it only scratches the surface of my broader creative operations footprint.<br><br>Below is a curated, high-level sampling of that footprint — showcasing final solutions designed to evolve, protect, and scale a <span>national brand.</span>",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/1/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/2/1200/800" },
-                    { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                    { type: "image", url: "https://picsum.photos/id/3/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/4/1200/800" }
+                    { type: "image", url: "assets/redfin/0.png"}, 
+                    { type: "image", url: "assets/redfin/1.png", width: 100 },
+                    { type: "image", url: "assets/redfin/2.png", width: 100 },
+                    { type: "image", url: "assets/redfin/3.png", width: 50 },
+                    { type: "image", url: "assets/redfin/4.png", width: 50 },
+                    { type: "image", url: "assets/redfin/5.png", width: 100 },
+                    { type: "image", url: "assets/redfin/6.png", width: 100 },
+                    { type: "video", url: "assets/redfin/6b.mp4", width: 100 },
+                    { type: "video", url: "assets/redfin/7.mp4", width: 50 },
+                    { type: "image", url: "assets/redfin/8.png", width: 50 },
+                    { type: "image", url: "assets/redfin/9.png", width: 50 },
+                    { type: "video", url: "assets/redfin/10.mp4", width: 50 },
+                    { type: "video", url: "assets/redfin/11.mp4", width: 100 },
+                    { type: "image", url: "assets/redfin/12.png", width: 100 },
+                    { type: "image", url: "assets/redfin/13.jpg", width: 100 },
+                    { type: "image", url: "assets/redfin/14.png", width: 50 },
+                    { type: "image", url: "assets/redfin/15.png", width: 50 },
+                    { type: "image", url: "assets/redfin/16.png", width: 50 },
+                    { type: "image", url: "assets/redfin/17.png", width: 50 },
+                    { type: "image", url: "assets/redfin/18.png", width: 100 },
+                    { type: "image", url: "assets/redfin/19.png", width: 100 },
+                    { type: "image", url: "assets/redfin/19b.png", width: 100 },
+                    { type: "video", url: "assets/redfin/20.mp4", width: 33 },
+                    { type: "video", url: "assets/redfin/21.mp4", width: 33 },
+                    { type: "video", url: "assets/redfin/22.mp4", width: 33 },
+                    { type: "image", url: "assets/redfin/23.png", width: 100 },
+                    { type: "image", url: "assets/redfin/24.png", width: 100 },
+                    { type: "image", url: "assets/redfin/25.png", width: 33 },
+                    { type: "image", url: "assets/redfin/26.png", width: 33 },
+                    { type: "image", url: "assets/redfin/27.png", width: 33 },
+                    { type: "image", url: "assets/redfin/27b.jpg", width: 100 },
+                    { type: "image", url: "assets/redfin/28.png", width: 50 },
+                    { type: "image", url: "assets/redfin/29.png", width: 50 },
+                    { type: "image", url: "assets/redfin/30.png", width: 50 },
+                    { type: "image", url: "assets/redfin/31.png", width: 50 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/redfin/32.png", width: 50 },
+                    { type: "image", url: "assets/redfin/33.png", width: 50 },
+                    { type: "image", url: "assets/redfin/34.png", width: 50 },
+                    { type: "image", url: "assets/redfin/35.png", width: 50 },
+                    { type: "image", url: "assets/redfin/36.png", width: 100 },
+                    { type: "image", url: "assets/redfin/37.png", width: 100 },
+                    { type: "image", url: "assets/redfin/38.png", width: 100 },
+                    { type: "image", url: "assets/redfin/39.png", width: 100 },
+                    { type: "image", url: "assets/redfin/40.png", width: 100 }
                 ]
             },
             {
                 id: 2,
-                title: "Analytics Dashboard",
-                short: "Real-time data visualization framework.",
-                details: "Explore the interface variations, responsive graphing systems, metrics configurations.",
+                title: "Houseplant by Seth Rogan",
+                short: "Digital brand strategy & custom CMS development for an immersive e-commerce experience.",
+                details: "As the Digital Creative Director for the U.S. launch of actor and filmmaker Seth Rogen’s brand, Houseplant, I led a team of designers and developers to architect a fully responsive, fluid e-commerce experience for his premium home goods and <span>cannabis products.</span><br><br>Breaking away from tired clichés, our digital strategy took cues from vintage, coffee-table-worthy magazines. We translated this editorial vision into a distinct, horizontally-scrolling custom digital experience that gracefully mimicked the physical act of flipping pages — balancing a retro aesthetic with a fresh, modern e-commerce flow.<br><br>Due to the strict regulatory landscape, standard out-of-the-box platforms weren't an option. Under my direction, our team architected a completely custom Shopify CMS build — the only commerce ecosystem capable of securely navigating these legal complexities at the time while granting us total creative freedom to bring his highly tailored vision to life.",
                 media: [
-                    { type: "image", url: "assets/sLA_Circle-v2.gif" },
-                    { type: "image", url: "https://picsum.photos/id/11/1200/800" },
-                    { type: "video", url: "assets/Houseplant_Portal_Desktop.mp4" },
-                    { type: "image", url: "https://picsum.photos/id/12/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/13/1200/800" }
+                    { type: "video", url: "assets/hp/0.mp4"}, 
+                    { type: "image", url: "assets/hp/1.png", width: 100 },
+                    { type: "image", url: "assets/hp/2.jpg", width: 33 },
+                    { type: "image", url: "assets/hp/3.jpg", width: 33 },
+                    { type: "image", url: "assets/hp/4.jpg", width: 33 },
+                    { type: "video", url: "assets/hp/5.mp4", width: 100 },
+                    { type: "image", url: "assets/hp/6.jpg", width: 50 },
+                    { type: "image", url: "assets/hp/7.jpg", width: 50 },
+                    { type: "video", url: "assets/hp/8.mp4", width: 100 },
+                    { type: "video", url: "assets/hp/9.mp4", width: 100 },
+                    { type: "image", url: "assets/hp/10.png", width: 50 },
+                    { type: "video", url: "assets/hp/11.mp4", width: 50 },
+                    { type: "image", url: "assets/hp/12.png", width: 100 },
+                    { type: "image", url: "assets/hp/13.jpg", width: 33 },
+                    { type: "image", url: "assets/hp/14.jpg", width: 33 },
+                    { type: "image", url: "assets/hp/15.jpg", width: 33 },
+                    { type: "image", url: "assets/hp/16.png", width: 100 }
                 ]
             },
             {
                 id: 3,
-                title: "Task Manager App",
+                title: "Amazon Game Studios",
                 short: "Kanban style productivity tool.",
                 details: "A productivity application allowing teams to collaborate seamlessly with drag-and-drop task boards.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/20/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/21/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/22/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/23/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/24/1200/800" }
+                    { type: "image", url: "assets/ags/0.png"}, 
+                    { type: "image", url: "https://picsum.photos/id/21/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/22/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/23/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/24/1200/800", width: 100 }
                 ]
             },
             {
@@ -435,11 +513,11 @@
                 short: "Robust backend for social networking.",
                 details: "A secure, scalable RESTful API supporting user profiles, followers, posts, and likes.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/30/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/31/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/32/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/33/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/34/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/30/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/31/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/32/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/33/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/34/1200/800", width: 100 }
                 ]
             },
             {
@@ -448,11 +526,11 @@
                 short: "Hyper-local weather updates.",
                 details: "A Progressive Web App utilizing geolocation data to fetch real-time weather metrics.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/40/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/41/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/42/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/43/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/44/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/40/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/41/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/42/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/43/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/44/1200/800", width: 100 }
                 ]
             },
             {
@@ -461,11 +539,11 @@
                 short: "Cross-platform workout companion.",
                 details: "A mobile app that tracks daily workouts, calorie expenditures, and sleep patterns.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/50/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/51/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/52/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/53/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/54/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/50/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/51/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/52/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/53/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/54/1200/800", width: 100 }
                 ]
             },
             {
@@ -474,11 +552,11 @@
                 short: "Interface for neural network models.",
                 details: "A user-friendly web interface that hooks into generative art APIs for asset rendering.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/60/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/61/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/62/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/63/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/64/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/60/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/61/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/62/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/63/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/64/1200/800", width: 100 }
                 ]
             },
             {
@@ -487,11 +565,11 @@
                 short: "Network vulnerability analyzer.",
                 details: "A lightweight automated tool designed to scan specific network ports and point out vulnerabilities.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/70/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/71/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/72/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/73/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/74/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/70/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/71/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/72/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/73/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/74/1200/800", width: 100 }
                 ]
             },
             {
@@ -500,18 +578,17 @@
                 short: "Monitor blockchain assets easily.",
                 details: "A clean dashboard that hooks into the blockchain to monitor active public asset data.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/80/600/400" },
-                    { type: "image", url: "https://picsum.photos/id/81/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/82/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/83/1200/800" },
-                    { type: "image", url: "https://picsum.photos/id/84/1200/800" }
+                    { type: "image", url: "https://picsum.photos/id/80/600/400", width: 100 }, 
+                    { type: "image", url: "https://picsum.photos/id/81/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/82/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/83/1200/800", width: 100 },
+                    { type: "image", url: "https://picsum.photos/id/84/1200/800", width: 100 }
                 ]
             }
         ];
 
-        // 2. DOM Selection
+        // DOM Selection
         const grid = document.getElementById('portfolioGrid');
-         
         const projectOverlay = document.getElementById('projectModalOverlay');
         const projectClose = document.getElementById('projectModalClose');
         const contactOverlay = document.getElementById('contactModalOverlay');
@@ -521,11 +598,9 @@
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
         const modalMediaStack = document.getElementById('modalMediaStack');
-
-        // Inner modal container that handles the scrolling layout
         const projectModalContainer = projectOverlay.querySelector('.modal-container');
 
-        // 3. Render Grid Items
+        // Render Grid Items
         projects.forEach(project => {
             const card = document.createElement('div');
             card.classList.add('project-card');
@@ -533,9 +608,9 @@
             const coverMedia = project.media[0];
             let coverElementHtml = '';
 
-            // Grid cards use silent, looping autoplay video if a video is first in the array
             if (coverMedia && coverMedia.type === 'video') {
-                coverElementHtml = `<video src="${coverMedia.url}" muted loop autoplay playsinline></video>`;
+                const gridPoster = coverMedia.url.replace(/\.[^/.]+$/, "") + ".jpg";
+                coverElementHtml = `<video src="${coverMedia.url}" poster="${gridPoster}" muted loop autoplay playsinline></video>`;
             } else if (coverMedia) {
                 coverElementHtml = `<img src="${coverMedia.url}" alt="${project.title} Cover">`;
             }
@@ -550,35 +625,76 @@
                 </div>
             `;
              
-            card.addEventListener('click', () => openProjectModal(project));
+            // CHANGED HERE: Clicking updates hash instead of calling the function directly
+            card.addEventListener('click', () => {
+                window.location.hash = project.id;
+            });
             grid.appendChild(card);
         });
 
-        // 4. Project Modal Logic
-        function openProjectModal(project) {
+        /**
+         * Central Routing Engine
+         * Evaluates URL state on change or page refresh, rendering layout shifts seamlessly
+         */
+        function handleRouting() {
+            const hash = window.location.hash.substring(1); // Strip the '#' character
+
+            if (!hash) {
+                // If hash is empty, check if structural project overlay is open and safely reverse it
+                if (projectOverlay.classList.contains('active')) {
+                    executeCloseProjectModal();
+                }
+                return;
+            }
+
+            // Look up corresponding record based on numeric string parse
+            const targetedProject = projects.find(p => p.id === parseInt(hash, 10));
+
+            if (targetedProject) {
+                executeOpenProjectModal(targetedProject);
+            } else {
+                // Guardrail: Clean bad/invalid strings from global history layout silently
+                console.warn(`Project context #${hash} missing. Stripping parameters.`);
+                history.replaceState(null, document.title, window.location.pathname + window.location.search);
+                if (projectOverlay.classList.contains('active')) {
+                    executeCloseProjectModal();
+                }
+            }
+        }
+
+        // Internal UI Engine: Populates and fires modal presentation safely
+        function executeOpenProjectModal(project) {
             modalTitle.innerText = project.title;
-            modalDescription.innerText = project.details;
+            modalDescription.innerHTML = project.details;
             modalMediaStack.innerHTML = ''; 
              
-            project.media.forEach(item => {
+            const interiorGalleryItems = project.media.slice(1);
+
+            interiorGalleryItems.forEach(item => {
                 const container = document.createElement('div');
                 container.classList.add('modal-media-item');
+
+                if (item.width === 50) {
+                    container.classList.add('w-50');
+                } else if (item.width === 33) {
+                    container.classList.add('w-33');
+                } else {
+                    container.classList.add('w-100');
+                }
 
                 if (item.type === 'video') {
                     const video = document.createElement('video');
                     video.src = item.url;
                      
-                    // Strict configuration for universal inline autoplay video loading
+                    const derivedPosterUrl = item.url.replace(/\.[^/.]+$/, "") + ".jpg";
+                    video.setAttribute('poster', derivedPosterUrl);
                     video.removeAttribute('controls');
                     video.muted = true;
                     video.loop = true;
                     video.setAttribute('playsinline', ''); 
                     container.appendChild(video);
 
-                    // Execute robust inline play configuration targeting mobile Safari requirements
-                    video.play().catch(error => {
-                        console.log("Autoplay was prevented by the browser:", error);
-                    });
+                    video.play().catch(err => console.log("Autoplay initialization bypassed:", err));
                 } else {
                     const img = document.createElement('img');
                     img.src = item.url;
@@ -590,27 +706,33 @@
                 modalMediaStack.appendChild(container);
             });
 
-            // Activate Swipe-Up Animation
             projectOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Lock background scroll
-            projectModalContainer.scrollTop = 0; // Ensures container starts fresh at the top
+            document.body.style.overflow = 'hidden'; 
+            projectModalContainer.scrollTop = 0; 
         }
 
-        function closeProjectModal() {
+        // Internal UI Engine: Tears down modal visualization assets
+        function executeCloseProjectModal() {
             projectOverlay.classList.remove('active');
+            document.body.style.overflow = ''; 
              
-            // Instantly pause running modal videos to save processing power/memory
             const runningVideos = modalMediaStack.querySelectorAll('video');
             runningVideos.forEach(video => video.pause());
-
-            // Wait 400ms for the slide-down animation to finish before resetting scroll and body styles
-            setTimeout(() => {
-                document.body.style.overflow = ''; // Restore background scroll cleanly after slide-down completes
-                projectModalContainer.scrollTop = 0;
-            }, 300); 
+            projectModalContainer.scrollTop = 0;
         }
 
-        // 5. Contact Modal Logic
+        // Global Event Triggers for Modal Backing Interactions
+        function handleProjectCloseAction() {
+            if (window.location.hash) {
+                // Stripping the hash fires 'hashchange' naturally, executing the closure structure safely
+                history.pushState(null, document.title, window.location.pathname + window.location.search);
+                executeCloseProjectModal();
+            } else {
+                executeCloseProjectModal();
+            }
+        }
+
+        // Contact Modal Logic (Standard overlay, independent of deep-linking engine)
         function openContactModal() {
             contactOverlay.classList.add('active');
             document.body.style.overflow = 'hidden'; 
@@ -619,32 +741,38 @@
 
         function closeContactModal() {
             contactOverlay.classList.remove('active');
-            // Guard against unlocking body scroll if the project modal is still sliding down
             if(!projectOverlay.classList.contains('active')) {
                 document.body.style.overflow = '';
             }
         }
 
-        // 6. Global Control Event Hooks
-        projectClose.addEventListener('click', closeProjectModal);
+        // Event hooks
+        projectClose.addEventListener('click', handleProjectCloseAction);
         contactOpenBtn.addEventListener('click', openContactModal);
         contactCloseBtn.addEventListener('click', closeContactModal);
          
-        // Close contact overlay by clicking outside its content box
         contactOverlay.addEventListener('click', (e) => {
             if(e.target === contactOverlay) closeContactModal();
         });
 
-        // Universal Escape Key Manager
+        // Background project modal overlay click fallback handler
+        projectOverlay.addEventListener('click', (e) => {
+            if(e.target === projectModalContainer) handleProjectCloseAction();
+        });
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if(contactOverlay.classList.contains('active')) {
                     closeContactModal();
                 } else if (projectOverlay.classList.contains('active')) {
-                    closeProjectModal();
+                    handleProjectCloseAction();
                 }
             }
         });
+
+        // Lifecycle Synchronization Engine Triggers
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting);
     </script>
 </body>
 </html>

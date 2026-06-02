@@ -1,0 +1,8 @@
+Houseplant by Seth Rogan
+Digital brand strategy & custom CMS development for an immersive e-commerce experience.
+
+As the Digital Creative Director for the U.S. launch of actor and filmmaker Seth Rogen’s brand, Houseplant, I led a team of designers and developers to architect a fully responsive, fluid e-commerce experience for his premium home goods and cannabis products.
+
+Breaking away from tired clichés, our digital strategy took cues from vintage, coffee-table-worthy magazines. We translated this editorial vision into a distinct, horizontally-scrolling custom digital experience that gracefully mimicked the physical act of flipping pages — balancing a retro aesthetic with a fresh, modern e-commerce flow.
+
+Due to the strict regulatory landscape, standard out-of-the-box platforms weren't an option. Under my direction, our team architected a completely custom Shopify CMS build — the only commerce ecosystem capable of securely navigating these legal complexities at the time while granting us total creative freedom to bring his highly tailored vision to life.
