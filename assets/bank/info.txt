@@ -1,0 +1,8 @@
+Enterprise Banking Platform
+Interface architecture and design built for a financial institution.
+
+Serving as the Digital Creative Director, I led a team to design and develop a web portal for a commercial banking institution. Tasked with replacing the fractured legacy infrastructure, the initial phase required distilling intensive user research to map out core behavioral touchpoints. This allowed us to prioritize the most frequently utilized banking activities while integrating an entirely new suite of stakeholder-required features.
+
+The visual execution relied entirely on an atomic design methodology, constructing a library of interchangeable components and modular blocks that allowed the interface to adapt fluidly to distinct client tiers and business needs. To transition our findings and wireframes into production, I directed a team of remote front-end developers, in-house designers, and backend engineers to build out the portal using a MEAN tech-stack deployed on Google Cloud.
+
+The resulting product delivered a cohesive financial platform optimized for thousands of daily user interactions.

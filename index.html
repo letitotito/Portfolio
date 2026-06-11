@@ -48,7 +48,7 @@
             width: 100%;
             text-align: left;
             margin: 0;
-            padding: 1em 1.5em;
+            padding: 1em 1.25em;
             color: #fff;
             background: #000;
             background: url(assets/background.webp) top center no-repeat;
@@ -72,10 +72,10 @@
 
         .hero {
             position: relative;
-            height: 50vh;  
+            height: 80vh;  
         }
 
-        .hero p, .card-content p, .modal-header-info p {
+        .hero p, .card-content p, .modal-header-info p, section .info {
             font-family: Lora, Georgia, serif;
             font-weight: 400;
         }
@@ -118,13 +118,22 @@
             background-color: #f8f8f8;
         }
 
+        section .info, section .portfolio-grid {
+            max-width: 75em;
+            margin: 5% auto 10%;
+        }
+
+        section .info p {
+            margin: 0 auto 1em;
+            font-size: 1.2em;
+            max-width: 50em;
+        }
+
         /* --- Portfolio Grid --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
             gap: 2em;
-            max-width: 75em;
-            margin: 5% auto 10%;
         }
 
         .project-card {
@@ -143,7 +152,7 @@
 
         .card-content {
             margin: 2%;
-            padding: .25em .5em;
+            padding: .25em .5em .5em;
         }
 
         .card-content h3 {
@@ -160,6 +169,7 @@
             width: 100%;
             height: 200px;
             background-color: #e9ecef;
+            border-bottom: 1px solid #ddd;
             overflow: hidden;
         }
 
@@ -312,6 +322,28 @@
             object-fit: contain;
         }
 
+        /* --- Refined Element-Level No Space Utility --- */
+        .modal-media-item.no-space {
+            border-radius: 0;
+        }
+
+        /* Preserve top rounded corners for the very first item in the stack */
+        .modal-media-item.no-space:first-of-type {
+            border-top-left-radius: .5em;
+            border-top-right-radius: .5em;
+        }
+
+        /* Preserve bottom rounded corners for the very last item in the stack */
+        .modal-media-item.no-space:last-of-type {
+            border-bottom-left-radius: .5em;
+            border-bottom-right-radius: .5em;
+        }
+
+        /* Wipe out layout flex gap when following a no-space element */
+        .modal-media-item.no-space + .modal-media-item {
+            margin-top: -1.5rem;
+        }
+
         .contact-list {
             list-style: none;
             max-width: 20em;
@@ -341,7 +373,7 @@
             text-decoration: underline;
         }
 
-        /* Responsive Layout Controls */
+        /* Mobile Responsive Layout Controls */
         @media (min-width: 700px) {
             header {
                 position: fixed;
@@ -355,10 +387,16 @@
                 position: fixed;
                 bottom: 50%;
                 text-align: center;
+                font-size: 2em;
             }
 
             .modal-media-stack {
                 gap: 2rem; 
+            }
+
+            /* Desktop gap offset configuration */
+            .modal-media-item.no-space + .modal-media-item {
+                margin-top: -2rem;
             }
 
             .modal-media-item.w-50 {
@@ -387,6 +425,12 @@
     </div>
 
     <section>
+        <div class="info">
+            <p>I am a passionate design leader based in the Seattle area. Operating at the intersection of brand strategy, product design, and digital execution, I have guided cross-functional teams of designers and developers to launch global platforms, cohesive brand identities, and scalable design systems.</p>
+            <p>My multi-disciplinary skillset and multicultural background allow me to cover the entire creative spectrum — from classic print and packaging design to large-scale web architecture — bringing a unique, collaborative approach to every problem I tackle. </p>
+            <p>Feel free to reach out anytime if you want to connect over a creative puzzle, discuss a potential project, or just say hello.</p>
+           
+        </div>
         <main class="portfolio-grid" id="portfolioGrid"></main>
     </section>
 
@@ -419,7 +463,7 @@
             {
                 id: 1,
                 title: "Redfin",
-                short: "Scalable marketing toolkits, cross-brand <span>product UX</span>, & integrated marketing campaigns.", 
+                short: "Scalable marketing assets & libraries, cross-brand <span>product UI</span>, integrated marketing campaigns.", 
                 details: "During my half-decade tenure at Redfin, I had the privilege of shaping a massive volume of work across nearly every consumer touchpoint. My role dynamically shifted across multiple cross-functional initiatives; for several projects, I embedded directly with product teams to develop scalable UX solutions with hands-on designs, while for others, I acted as the art director guiding high-profile creative strategy.<br><br>While this collection focuses on final execution across core categories like brand systems, digital experiences, DTC marketing toolkits, and integrated OOH campaigns, it only scratches the surface of my broader creative operations footprint.<br><br>Below is a curated, high-level sampling of that footprint — showcasing final solutions designed to evolve, protect, and scale a <span>national brand.</span>",
                 media: [
                     { type: "image", url: "assets/redfin/0.png"}, 
@@ -496,93 +540,151 @@
             },
             {
                 id: 3,
-                title: "Amazon Game Studios",
-                short: "Kanban style productivity tool.",
-                details: "A productivity application allowing teams to collaborate seamlessly with drag-and-drop task boards.",
+                title: "Brand Guidelines",
+                short: "A collection of brand & identity frameworks designed for strategic clarity.",
+                details: "Serving as the final distillation from a creative partnership, this curated collection showcases individual slides from brand books that I have helped build over the years. Each slide represents the culmination of deep market research,  stress-testing, and stakeholder alignment - all condensed into clear, actionable guidelines to be used by internal marketing teams, independent agencies, and regional partners.<br><br>Across this collection, the focus is on systemic problem solving rather than isolated assets. The work below concisely demonstrates how to equip multidisciplinary teams with the tools needed to scale a brand while keeping its core identity intact - achieved by establishing the foundational brand architecture, codifying core design systems, defining multi-platform creative strategy, and standardizing asset and media execution playbooks.",
                 media: [
-                    { type: "image", url: "assets/ags/0.png"}, 
-                    { type: "image", url: "https://picsum.photos/id/21/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/22/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/23/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/24/1200/800", width: 100 }
+                    { type: "image", url: "assets/bg/0.png"}, 
+                    { type: "image", url: "assets/bg/1.png", width: 100 },
+                    { type: "image", url: "assets/bg/2.jpg", width: 33 },
+                    { type: "image", url: "assets/bg/3.jpg", width: 33 },
+                    { type: "image", url: "assets/bg/4.jpg", width: 33 },
+                    { type: "image", url: "assets/bg/5.png", width: 100 },
+                    { type: "image", url: "assets/bg/6.png", width: 100 },
+                    { type: "image", url: "assets/bg/7.png", width: 100 },
+                    { type: "image", url: "assets/bg/8.png", width: 100 },
+                    { type: "image", url: "assets/bg/9.png", width: 50 },
+                    { type: "image", url: "assets/bg/10.png", width: 50 },
+                    { type: "image", url: "assets/bg/11.png", width: 100 },
+                    { type: "image", url: "assets/bg/12.png", width: 100 },
+                    { type: "image", url: "assets/bg/13.png", width: 100 },
+                    { type: "image", url: "assets/bg/14.png", width: 100 },
+                    { type: "image", url: "assets/bg/15.png", width: 100 },
+                    { type: "image", url: "assets/bg/16.png", width: 100 },
+                    { type: "image", url: "assets/bg/17.png", width: 100 },
+                    { type: "image", url: "assets/bg/18.png", width: 100 },
+                    { type: "image", url: "assets/bg/19.png", width: 100 },
+                    { type: "image", url: "assets/bg/20.png", width: 100 }
                 ]
             },
             {
                 id: 4,
-                title: "Social Media API",
-                short: "Robust backend for social networking.",
-                details: "A secure, scalable RESTful API supporting user profiles, followers, posts, and likes.",
+                title: "SugaringLA",
+                short: "Comprehensive brand evolution and digital strategy to scale a skincare franchise nationally.",
+                details: "When the founder of Los Angeles-based skincare brand sugaringLA looked to scale beyond their Southern California footprint, our agency was brought on to lead their nationwide brand evolution. The objective was to reposition the business from a regional service provider, into a scalable national brand spanning physical franchise locations and at-home CPG product line.<br><br>Acting as the digital strategist and creative lead, I helped to manage this comprehensive brand transformation. The repositioning began by conducting competitive market analysis and target audience profiling, allowing us to refine the brand's identity for national growth.<br><br>We translated this new strategic positioning into a foundational logomark that references the organic nature of their signature product, and across an entire ecosystem — designing a minimalistic and modern e-commerce web experience, franchise marketing collateral, product packaging, and establishing social media guidelines. This work successfully drove increases in both brick-and-mortar franchise traffic and online DTC e-commerce sales.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/30/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/31/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/32/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/33/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/34/1200/800", width: 100 }
+                    { type: "video", url: "assets/sla/0.mp4"}, 
+                    { type: "image", url: "assets/sla/1.jpg", width: 100 },
+                    { type: "image", url: "assets/sla/2.png", width: 100 },
+                    { type: "image", url: "assets/sla/3.png", width: 50 },
+                    { type: "image", url: "assets/sla/4.png", width: 50 },
+                    { type: "video", url: "assets/sla/5.mp4", width: 100 },
+                    { type: "image", url: "assets/sla/6.png", width: 50 },
+                    { type: "image", url: "assets/sla/7.png", width: 50 },
+                    { type: "image", url: "assets/sla/8.png", width: 100 },
+                    { type: "image", url: "assets/sla/9.png", width: 50 },
+                    { type: "image", url: "assets/sla/10.png", width: 50 },
+                    { type: "image", url: "assets/sla/11.png", width: 100 },
+                    { type: "image", url: "assets/sla/12.jpg", width: 50 },
+                    { type: "image", url: "assets/sla/13.jpg", width: 50 }
                 ]
             },
             {
                 id: 5,
-                title: "Weather Forecast PWA",
-                short: "Hyper-local weather updates.",
-                details: "A Progressive Web App utilizing geolocation data to fetch real-time weather metrics.",
+                title: "Agoda Mobile App",
+                short: "Mobile product design and UX strategy mapping booking flow for a major travel platform.",
+                details: "This project was focused on architecting a native mobile experience for Agoda Travel, a global, high-traffic booking platform. The scope of work required defining an entirely new UX architecture, since their mobile product operated as a standalone ecosystem independent from the web experience. As the digital design lead, I managed a team of UX researchers to map all user journeys, before establishing, testing, and validating core wireframe structures.<br><br>The execution centered on streamlining the online booking journey into a high-performance, fast-loading mobile experience that balanced intuitive user logic with a clean, modern visual identity. Leading a team of onsite UI designers, we established a unified design system and built out all interactive components across critical touchpoints - from the initial landing and search states through navigation frameworks, filtered property lists, and a simplified checkout flow.<br><br>We partnered with a remote, overseas development team and directed them throughout the entire build cycle. By managing the comprehensive design handoff, troubleshooting implementation constraints, and conducting rigorous cross-platform QA, we ensured a successful launch on both the iOS and Google Play stores.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/40/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/41/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/42/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/43/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/44/1200/800", width: 100 }
+                    { type: "image", url: "assets/agoda/0.jpg" }, 
+                    { type: "image", url: "assets/agoda/1.jpg", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/2.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/4.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/5.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/6.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/7.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/8.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/9.png", width: 100, no_space: true },
+                    { type: "image", url: "assets/agoda/10.png", width: 100, no_space: true }
                 ]
             },
             {
                 id: 6,
-                title: "Fitness Tracker Mobile",
-                short: "Cross-platform workout companion.",
-                details: "A mobile app that tracks daily workouts, calorie expenditures, and sleep patterns.",
+                title: "Amazon Game Studios",
+                short: "Go-to-market strategy via a modular design framework to launch the first two global titles.",
+                details: "When the gaming division at Amazon prepared to launch its first two major titles — Crucible and New World — our agency was brought on to build all visual marketing assets for their release. Managing a team of talented creatives, I helped direct the strategy and design system architecture, engineering a single modular system capable of yielding two entirely different marketing identities. By focusing on reusable components and scalable markup, we delivered a go-to-market strategy that allowed us to seamlessly reskin the core layout of Crucible with the creative components of New World, providing a highly cost-efficient solution for the client.<br><br>Starting with Crucible, we established the market positioning and creative strategy before building out the core visual identity—including logomark variations, typography, and color palettes. This structural framework was then deployed across a flexible web infrastructure designed to evolve dynamically alongside player engagement.<br><br>The work below illustrates the scope of this modular architecture, showcasing how we managed the production of custom homepages, targeted landing pages, and edge-case experiences like custom 404 and 500 error screens. To ensure long-term brand integrity, we packaged strict tone-of-voice documentation and social media toolkits, equipping Amazon’s internal marketing teams with the tools to scale, maintain, and expand <span>both brands.</span>",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/50/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/51/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/52/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/53/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/54/1200/800", width: 100 }
+                    { type: "image", url: "assets/ags/0.png"}, 
+                    { type: "image", url: "assets/ags/1.png", width: 100 },
+                    { type: "image", url: "assets/ags/2.png", width: 100 },
+                    { type: "image", url: "assets/ags/3.jpg", width: 100 },
+                    { type: "image", url: "assets/ags/4.png", width: 50 },
+                    { type: "image", url: "assets/ags/5.png", width: 50 },
+                    { type: "image", url: "assets/ags/6.jpg", width: 100 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/ags/7.png", width: 50 },
+                    { type: "image", url: "assets/ags/8.png", width: 50 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/ags/9.png", width: 50 },
+                    { type: "image", url: "assets/ags/10.png", width: 50 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/ags/11.png", width: 50 },
+                    { type: "image", url: "assets/ags/12.png", width: 50 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/ags/13.png", width: 33 },
+                    { type: "image", url: "assets/ags/14.png", width: 33 },
+                    { type: "image", url: "assets/ags/15.png", width: 33 },
+                    { type: "image", url: "assets/div.png", width: 100 },
+                    { type: "image", url: "assets/ags/16.jpg", width: 100 },
+                    { type: "image", url: "assets/ags/17.png", width: 100 },
+                    { type: "image", url: "assets/ags/18.jpg", width: 100 },
+                    { type: "image", url: "assets/ags/19.png", width: 100 },
+                    { type: "image", url: "assets/ags/20.png", width: 100 },
+                    { type: "image", url: "assets/ags/21.png", width: 100 },
+                    { type: "image", url: "assets/ags/22.png", width: 100 },
+                    { type: "image", url: "assets/ags/23.png", width: 100 },
+                    { type: "image", url: "assets/ags/24.png", width: 100 }
                 ]
             },
             {
                 id: 7,
-                title: "AI Image Generator",
-                short: "Interface for neural network models.",
-                details: "A user-friendly web interface that hooks into generative art APIs for asset rendering.",
+                title: "Turnkey Web Framework",
+                short: "Modular B2B theme system built for white-label resale across automotive dealership networks.",
+                details: "Developed in partnership with a national automotive marketing agency, this enterprise initiative required engineering a custom WordPress theme system capable of being white-labeled and commercialized for dealerships across the country. The foundational challenge centered on empowering non-technical retail operators; any design choice needed to be practically foolproof, which required limiting configuration options and providing tight guardrails to a set of highly optimized presets.<br><br>To prevent layouts from breaking while still ensuring each client site remained visually distinct, we engineered a modular component framework that allowed individual dealerships to achieve unique branding without altering the core codebase. Beyond the front-end design constraints, the architecture integrated backend database logistics to handle mixed inventories. The framework was engineered to adjust to a client’s specific business model, providing tailored search filtering for dealerships that dealt exclusively in new cars, standalone used car operations, or mixed-inventory showrooms.<br><br>This product successfully enabled hundreds of regional businesses to deploy a lead-generating web presence without requiring localized IT support.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/60/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/61/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/62/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/63/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/64/1200/800", width: 100 }
+                    { type: "image", url: "assets/car/0.jpg" }, 
+                    { type: "image", url: "assets/car/1.png", width: 100 },
+                    { type: "image", url: "assets/car/2.png", width: 100 },
+                    { type: "image", url: "assets/car/3.png", width: 100 }
                 ]
             },
             {
                 id: 8,
-                title: "Cybersecurity Scanner",
-                short: "Network vulnerability analyzer.",
-                details: "A lightweight automated tool designed to scan specific network ports and point out vulnerabilities.",
+                title: "Editorial Art Direction",
+                short: "Direction & creative management of external talent for a monthly print & digital publication.",
+                details: "My role as Art Director for the publication shown below was centered on creating content to help evolve the modern and minimal visual style that this magazine was well known for. To achieve this, the position required end-to-end talent and client management: interviewing, commissioning, and directing a diverse network of freelance illustrators, photographers, and copywriters to translate complex editorial themes and client briefs into the final product.<br><br>I oversaw the visual narrative of each issue, ensuring the pacing and expressive creative execution of the layouts, photography, and illustration remained intentionally familiar, while continuously pushing the magazine's visual style into fresh, forward-looking territory. This process relied on leading small teams through intense production cycles, utilizing a fast-paced workflow similar to digital 'agile' methodologies, to deliver beautiful work on tight publishing deadlines.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/70/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/71/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/72/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/73/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/74/1200/800", width: 100 }
+                    { type: "image", url: "assets/mag/0.jpg"}, 
+                    { type: "image", url: "assets/mag/1.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/2.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/3.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/4.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/5.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/6.jpg", width: 100 },
+                    { type: "image", url: "assets/mag/7.jpg", width: 100 }
                 ]
             },
             {
                 id: 9,
-                title: "Crypto Wallet Tracker",
-                short: "Monitor blockchain assets easily.",
-                details: "A clean dashboard that hooks into the blockchain to monitor active public asset data.",
+                title: "Enterprise Banking Platform",
+                short: "Interface architecture and design built for a financial institution.",
+                details: "Serving as the Digital Creative Director, I led a team to design and develop a web portal for a commercial banking institution. Tasked with replacing the fractured legacy infrastructure, the initial phase required distilling intensive user research to map out core behavioral touchpoints. This allowed us to prioritize the most frequently utilized banking activities while integrating an entirely new suite of stakeholder-required features.<br><br>The visual execution relied entirely on an atomic design methodology, constructing a library of interchangeable components and modular blocks that allowed the interface to adapt fluidly to distinct client tiers and business needs. To transition our findings and wireframes into production, I directed a team of remote front-end developers, in-house designers, and backend engineers to build out the portal using a MEAN tech-stack deployed on Google Cloud.<br><br>The resulting product delivered a cohesive financial platform optimized for thousands of daily user interactions.",
                 media: [
-                    { type: "image", url: "https://picsum.photos/id/80/600/400", width: 100 }, 
-                    { type: "image", url: "https://picsum.photos/id/81/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/82/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/83/1200/800", width: 100 },
-                    { type: "image", url: "https://picsum.photos/id/84/1200/800", width: 100 }
+                    { type: "image", url: "assets/bank/0.png" }, 
+                    { type: "image", url: "assets/bank/1.png", width: 100 },
+                    { type: "image", url: "assets/bank/2.png", width: 100 },
+                    { type: "image", url: "assets/bank/3.png", width: 100 },
+                    { type: "image", url: "assets/bank/4.png", width: 100 },
+                    { type: "image", url: "assets/bank/5.png", width: 100 }
                 ]
             }
         ];
@@ -625,35 +727,27 @@
                 </div>
             `;
              
-            // CHANGED HERE: Clicking updates hash instead of calling the function directly
             card.addEventListener('click', () => {
                 window.location.hash = project.id;
             });
             grid.appendChild(card);
         });
 
-        /**
-         * Central Routing Engine
-         * Evaluates URL state on change or page refresh, rendering layout shifts seamlessly
-         */
         function handleRouting() {
-            const hash = window.location.hash.substring(1); // Strip the '#' character
+            const hash = window.location.hash.substring(1);
 
             if (!hash) {
-                // If hash is empty, check if structural project overlay is open and safely reverse it
                 if (projectOverlay.classList.contains('active')) {
                     executeCloseProjectModal();
                 }
                 return;
             }
 
-            // Look up corresponding record based on numeric string parse
             const targetedProject = projects.find(p => p.id === parseInt(hash, 10));
 
             if (targetedProject) {
                 executeOpenProjectModal(targetedProject);
             } else {
-                // Guardrail: Clean bad/invalid strings from global history layout silently
                 console.warn(`Project context #${hash} missing. Stripping parameters.`);
                 history.replaceState(null, document.title, window.location.pathname + window.location.search);
                 if (projectOverlay.classList.contains('active')) {
@@ -673,6 +767,11 @@
             interiorGalleryItems.forEach(item => {
                 const container = document.createElement('div');
                 container.classList.add('modal-media-item');
+
+                // Evaluate item-level structural configurations
+                if (item.no_space) {
+                    container.classList.add('no-space');
+                }
 
                 if (item.width === 50) {
                     container.classList.add('w-50');
@@ -711,7 +810,6 @@
             projectModalContainer.scrollTop = 0; 
         }
 
-        // Internal UI Engine: Tears down modal visualization assets
         function executeCloseProjectModal() {
             projectOverlay.classList.remove('active');
             document.body.style.overflow = ''; 
@@ -721,10 +819,8 @@
             projectModalContainer.scrollTop = 0;
         }
 
-        // Global Event Triggers for Modal Backing Interactions
         function handleProjectCloseAction() {
             if (window.location.hash) {
-                // Stripping the hash fires 'hashchange' naturally, executing the closure structure safely
                 history.pushState(null, document.title, window.location.pathname + window.location.search);
                 executeCloseProjectModal();
             } else {
@@ -732,7 +828,6 @@
             }
         }
 
-        // Contact Modal Logic (Standard overlay, independent of deep-linking engine)
         function openContactModal() {
             contactOverlay.classList.add('active');
             document.body.style.overflow = 'hidden'; 
@@ -755,7 +850,6 @@
             if(e.target === contactOverlay) closeContactModal();
         });
 
-        // Background project modal overlay click fallback handler
         projectOverlay.addEventListener('click', (e) => {
             if(e.target === projectModalContainer) handleProjectCloseAction();
         });
@@ -770,7 +864,6 @@
             }
         });
 
-        // Lifecycle Synchronization Engine Triggers
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('DOMContentLoaded', handleRouting);
     </script>

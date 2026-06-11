@@ -1,0 +1,8 @@
+Amazon Game Studios
+Go-to-market strategy via a modular design framework to launch the first two global titles.
+
+When the gaming division at Amazon prepared to launch its first two major titles — Crucible and New World — our agency was brought on to build all visual marketing assets for their release. Managing a team of talented creatives, I helped direct the strategy and design system architecture, engineering a single modular system capable of yielding two entirely different marketing identities. By focusing on reusable components and scalable markup, we delivered a go-to-market strategy that allowed us to seamlessly reskin the core layout of Crucible with the creative components of New World, providing a highly cost-efficient solution for the client.
+
+Starting with Crucible, we established the market positioning and creative strategy before building out the core visual identity—including logomark variations, typography, and color palettes. This structural framework was then deployed across a flexible web infrastructure designed to evolve dynamically alongside player engagement.
+
+The work below illustrates the scope of this modular architecture, showcasing how we managed the production of custom homepages, targeted landing pages, and edge-case experiences like custom 404 and 500 error screens. To ensure long-term brand integrity, we packaged strict tone-of-voice documentation and social media toolkits, equipping Amazon’s internal marketing teams with the tools to scale, maintain, and expand both brands.

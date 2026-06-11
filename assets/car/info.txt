@@ -1,0 +1,8 @@
+Turnkey Web Framework
+Modular B2B theme system built for white-label resale across automotive dealership networks.
+
+Developed in partnership with a national automotive marketing agency, this enterprise initiative required engineering a custom WordPress theme system capable of being white-labeled and commercialized for dealerships across the country. The foundational challenge centered on empowering non-technical retail operators; any design choice needed to be practically foolproof, which required limiting configuration options and providing tight guardrails to a set of highly optimized presets. 
+
+To prevent layouts from breaking while still ensuring each client site remained visually distinct, we engineered a modular component framework that allowed individual dealerships to achieve unique branding without altering the core codebase. Beyond the front-end design constraints, the architecture integrated backend database logistics to handle mixed inventories. The framework was engineered to adjust to a client’s specific business model, providing tailored search filtering for dealerships that dealt exclusively in new cars, standalone used car operations, or mixed-inventory showrooms. 
+
+This product successfully enabled hundreds of regional businesses to deploy a lead-generating web presence without requiring localized IT support.

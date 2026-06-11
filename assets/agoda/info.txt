@@ -1,0 +1,8 @@
+Agoda Mobile App
+Mobile product design and UX strategy mapping booking flow for a major travel platform.
+
+This project was focused on architecting a native mobile experience for Agoda Travel, a global, high-traffic booking platform. The scope of work required defining an entirely new UX architecture, since their mobile product operated as a standalone ecosystem independent from the web experience. As the digital design lead, I managed a team of UX researchers to map all user journeys, before establishing, testing, and validating core wireframe structures.
+
+The execution centered on streamlining the online booking journey into a high-performance, fast-loading mobile experience that balanced intuitive user logic with a clean, modern visual identity. Leading a team of onsite UI designers, we established a unified design system and built out all interactive components across critical touchpoints - from the initial landing and search states through navigation frameworks, filtered property lists, and a simplified checkout flow.
+
+We partnered with a remote, overseas development team and directed them throughout the entire build cycle. By managing the comprehensive design handoff, troubleshooting implementation constraints, and conducting rigorous cross-platform QA, we ensured a successful launch on both the iOS and Google Play stores.
